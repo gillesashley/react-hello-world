@@ -6,13 +6,23 @@ class Clock extends React.Component {
     this.state = { date: new Date() };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000);
+  }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date(),
+    });
+  }
 
   render() {
     return (
-      <div className={`bg-blue-500`}>
+      <div className={`bg-blue-500 rounded-2xl`}>
         <h2 className={`text-2xl text-white`}>
           The time is: {this.state.date.toLocaleTimeString()}
         </h2>
